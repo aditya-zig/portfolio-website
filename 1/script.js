@@ -53,39 +53,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Modal Data
+  // Modal Data (Strictly aligned with resume facts)
   const modalData = {
     p1: {
       title: "WhatsApp Lead-Nurturing Workflow",
       tech: ["n8n", "Docker", "Google Sheets"],
-      problem: "Lead response delays can lead to lost interest. Manual follow-ups across messaging channels are prone to human error and inconsistency.",
-      solution: "Configured an automated lead-nurturing engine powered by n8n self-hosted inside a Docker container. Leads captured in Google Sheets automatically trigger automated WhatsApp notification flows.",
-      architecture: "Google Sheets Trigger ──> n8n (Docker Container) ──> Messaging Webhook ──> WhatsApp API",
-      learned: "Deepened practical knowledge of Docker containerization, Webhook payload handling, n8n node automation pipelines, and Google Sheets API integration."
+      summary: "Automated a WhatsApp follow-up workflow using n8n and Docker, with Google Sheets used to track leads and messages.",
+      architecture: "Google Sheets (Lead Tracking) ──> n8n (Docker Container) ──> WhatsApp Messaging",
+      learned: "Practiced workflow automation using n8n, self-hosting tools inside Docker containers, and integrating Google Sheets for tracking."
     },
     p2: {
       title: "Coding Assistant Integrations",
-      tech: ["MCP (Model Context Protocol)", "Playwright", "Firecrawl", "Google Sheets"],
-      problem: "AI coding assistants traditionally lack real-time browser interaction capabilities and web extraction workflows.",
-      solution: "Integrated Model Context Protocol (MCP) servers with Playwright for browser automation and Firecrawl for deep web page content extraction, automatically syncing scraped data directly into Google Sheets.",
-      architecture: "AI Assistant (Claude/Cursor) ──> MCP Gateway ──> Playwright / Firecrawl ──> Structured Data ──> Google Sheets API",
-      learned: "Hands-on experience extending AI model capabilities via MCP tool definitions, programmatic browser automation with Playwright, and web content extraction."
+      tech: ["MCP", "Playwright", "Firecrawl", "Google Sheets"],
+      summary: "Connected AI coding assistants with MCP, Playwright, and Firecrawl for browser automation and web data extraction, with outputs synced to Google Sheets.",
+      architecture: "AI Coding Assistant ──> Model Context Protocol (MCP) ──> Playwright & Firecrawl ──> Google Sheets",
+      learned: "Gained practical experience connecting AI assistants to external tools via MCP, automating browser interactions with Playwright, and syncing data to Google Sheets."
     },
     p3: {
       title: "Bookbot",
       tech: ["Python", "OOP", "CLI"],
-      problem: "Analyzing text density, word counts, and character breakdown efficiently from plain text files via command line.",
-      solution: "Developed a Python CLI utility that parses text documents, calculates total word metrics, and constructs a sorted character frequency breakdown utilizing custom Python classes.",
-      architecture: "Plain Text File ──> Python File Reader ──> Character Frequency Engine (OOP) ──> Terminal Reporter",
-      learned: "Strengthened core Python fundamentals, OOP class design, dictionary/list manipulation, and CLI application structure."
+      summary: "Built a CLI text analyzer that counts word and character frequencies, using Python classes and methods.",
+      architecture: "Text Input File ──> Python Analysis Engine (OOP) ──> Terminal Output Report",
+      learned: "Strengthened core Python object-oriented programming skills, string parsing, class methods, and CLI program design."
     },
     p4: {
       title: "Asteroids Clone",
       tech: ["Python", "Pygame", "OOP"],
-      problem: "Understanding 2D physics rendering, vector math, collision detection algorithms, and event-driven game loops.",
-      solution: "Engineered a desktop Asteroids game clone using Python and Pygame featuring full player movement dynamics, rotational math, bullet trajectories, dynamic asteroid splitting, and collision checks.",
-      architecture: "Pygame Event Loop ──> Player Control & Velocity ──> Collision Detection Engine ──> Screen Renderer",
-      learned: "Gained hands-on experience with game loops, vector math, delta time calculation, dynamic sprite rendering, and object hierarchy."
+      summary: "Built an Asteroids-style game with Python and Pygame, implementing player movement, collision detection, and game-loop logic.",
+      architecture: "Pygame Main Loop ──> Player Movement & Physics ──> Collision Detection ──> Render Loop",
+      learned: "Applied object-oriented programming principles to game development, vector math, collision detection algorithms, and game loop architecture."
     }
   };
 
@@ -96,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openModalBtns = document.querySelectorAll('.open-modal');
 
   openModalBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       const modalId = btn.getAttribute('data-modal');
       const data = modalData[modalId];
       if (!data) return;
@@ -108,13 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         
         <div class="modal-section">
-          <div class="modal-section-title font-mono">// PROBLEM & CONTEXT</div>
-          <p class="modal-p">${data.problem}</p>
-        </div>
-
-        <div class="modal-section">
-          <div class="modal-section-title font-mono">// AUTOMATION & SOLUTION</div>
-          <p class="modal-p">${data.solution}</p>
+          <div class="modal-section-title font-mono">// SUMMARY</div>
+          <p class="modal-p">${data.summary}</p>
         </div>
 
         <div class="modal-section">
@@ -123,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div class="modal-section">
-          <div class="modal-section-title font-mono">// KEY TAKEAWAYS</div>
+          <div class="modal-section-title font-mono">// WHAT WAS EXPLORED</div>
           <p class="modal-p">${data.learned}</p>
         </div>
       `;
