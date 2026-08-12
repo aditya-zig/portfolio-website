@@ -1,0 +1,42 @@
+---
+import { siteConfig } from "../config";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section id="skills" class="border-t border-border bg-surface/40">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+    <SectionHeading
+      index="03"
+      title="Skills"
+      note="Grouped by where I am in each technology — what I'm comfortable with, what I'm building with, and what I'm actively learning."
+    />
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        siteConfig.skills.map((group) => (
+          <div class="rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40">
+            <h3
+              class="font-mono text-xs uppercase tracking-[0.2em] text-accent"
+            >
+              {group.group}
+            </h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span
+                  class="rounded-md border border-border px-2.5 py-1 font-mono text-xs text-muted transition-colors duration-200 hover:border-accent/40 hover:text-text"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            {group.note && (
+              <p class="mt-4 text-xs leading-relaxed text-muted">
+                {group.note}
+              </p>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+---
+interface Props {
+  motif: string;
+  monogram: string;
+  index: string;
+  category: string;
+  class?: string;
+}
+
+const { motif, monogram, index, category, class: className } = Astro.props;
+
+const motifs: Record<string, string> = {
+  chat: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" class="h-36 w-36 text-muted sm:h-44 sm:w-44" aria-hidden="true">
+    <path d="M34 34v13m0-13h13M166 34v13m0-13h-13M34 166v-13m0 13h13M166 166v-13m0 13h-13" stroke-opacity=".45"/>
+    <path d="M34 34l13 13M166 34l-13 13M34 166l13-13M166 166l-13-13" stroke-opacity=".3"/>
+    <rect x="42" y="52" width="116" height="82" rx="14"/>
+    <path d="M74 134l-12 22 30-20z"/>
+    <rect x="62" y="74" width="52" height="6" rx="3" class="text-accent"/>
+    <rect x="62" y="92" width="78" height="6" rx="3"/>
+    <rect x="62" y="110" width="40" height="6" rx="3"/>
+    <circle cx="150" cy="66" r="2.5" class="text-accent" fill="currentColor" stroke="none"/>
+  </svg>`,
+  plug: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" class="h-36 w-36 text-muted sm:h-44 sm:w-44" aria-hidden="true">
+    <path d="M34 34v13m0-13h13M166 34v13m0-13h-13M34 166v-13m0 13h13M166 166v-13m0 13h-13" stroke-opacity=".45"/>
+    <path d="M34 34l13 13M166 34l-13 13M34 166l13-13M166 166l-13-13" stroke-opacity=".3"/>
+    <rect x="30" y="62" width="42" height="76" rx="10"/>
+    <rect x="128" y="62" width="42" height="76" rx="10"/>
+    <path d="M72 100h16M112 100h16"/>
+    <path d="M72 80h-10M128 80h10"/>
+    <rect x="88" y="88" width="24" height="24" rx="6" class="text-accent"/>
+    <circle cx="158" cy="66" r="2.5" class="text-accent" fill="currentColor" stroke="none"/>
+  </svg>`,
+  book: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" class="h-36 w-36 text-muted sm:h-44 sm:w-44" aria-hidden="true">
+    <path d="M34 34v13m0-13h13M166 34v13m0-13h-13M34 166v-13m0 13h13M166 166v-13m0 13h-13" stroke-opacity=".45"/>
+    <path d="M34 34l13 13M166 34l-13 13M34 166l13-13M166 166l-13-13" stroke-opacity=".3"/>
+    <rect x="42" y="50" width="116" height="102" rx="6"/>
+    <path d="M100 56v90"/>
+    <rect x="56" y="72" width="26" height="6" rx="3"/>
+    <rect x="92" y="72" width="30" height="6" rx="3"/>
+    <rect x="56" y="90" width="38" height="6" rx="3"/>
+    <rect x="92" y="90" width="30" height="6" rx="3"/>
+    <rect x="56" y="108" width="20" height="6" rx="3" class="text-accent"/>
+    <rect x="92" y="108" width="30" height="6" rx="3"/>
+  </svg>`,
+  asteroids: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" class="h-36 w-36 text-muted sm:h-44 sm:w-44" aria-hidden="true">
+    <path d="M34 34l14 14M166 166l-14-14M166 34l-14 14M34 166l14-14" stroke-opacity=".3"/>
+    <polygon points="56,54 140,62 130,128 92,150 48,112"/>
+    <polygon points="152,58 174,70 146,82" class="text-accent"/>
+    <ellipse cx="104" cy="102" rx="76" ry="58" stroke-dasharray="3 7" stroke-opacity=".35"/>
+    <circle cx="30" cy="150" r="2.5" fill="currentColor" stroke="none"/>
+    <circle cx="172" cy="150" r="2" class="text-accent" fill="currentColor" stroke="none"/>
+  </svg>`,
+};
+---
+
+<div
+  class={`relative min-h-56 overflow-hidden border border-border bg-surface-2 lg:min-h-0${className ? ` ${className}` : ""}`}
+>
+  <div class="blueprint-grid absolute inset-0" aria-hidden="true"></div>
+  <span
+    class="absolute left-4 top-4 font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
+  >
+    {index} / {monogram}
+  </span>
+  <span
+    class="absolute right-4 top-4 hidden max-w-[45%] truncate text-right font-mono text-[11px] uppercase tracking-[0.2em] text-accent sm:block"
+  >
+    {category}
+  </span>
+  <div
+    class="absolute inset-0 flex items-center justify-center"
+    set:html={motifs[motif] ?? motifs.chat}
+  ></div>
+</div>
